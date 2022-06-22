@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/main_container"
+    android:name="com.ev.composition_number.presentation.WelcomeFragment"
     tools:context=".presentation.MainActivity">
 
   </androidx.fragment.app.FragmentContainerView>
