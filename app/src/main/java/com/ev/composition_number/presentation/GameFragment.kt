@@ -7,8 +7,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.ev.composition_number.databinding.FragmentGameBinding
 
-class GameFragment: Fragment() {
+class GameFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-        FragmentGameBinding.inflate(inflater, container, false).root
+    private var _binding: FragmentGameBinding? = null
+    private val binding: FragmentGameBinding
+        get() = _binding ?: throw RuntimeException("GameFragment == null")
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+
+        _binding = FragmentGameBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
