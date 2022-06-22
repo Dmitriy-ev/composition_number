@@ -7,8 +7,19 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.ev.composition_number.databinding.FragmentWelcomeBinding
 
-class WelcomeFragment: Fragment() {
+class WelcomeFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-        FragmentWelcomeBinding.inflate(inflater, container, false).root
+    private var _binding: FragmentWelcomeBinding? = null
+    private val binding: FragmentWelcomeBinding
+        get() = _binding ?: throw RuntimeException("FragmentWelcomeBinding == null")
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = FragmentWelcomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

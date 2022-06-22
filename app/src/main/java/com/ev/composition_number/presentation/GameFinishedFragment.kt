@@ -9,6 +9,17 @@ import com.ev.composition_number.databinding.FragmentGameFinishedBinding
 
 class GameFinishedFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-        FragmentGameFinishedBinding.inflate(inflater, container, false).root
+    private var _binding: FragmentGameFinishedBinding? = null
+    private val binding: FragmentGameFinishedBinding
+        get() = _binding ?: throw RuntimeException("FragmentGameFinished == null")
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = FragmentGameFinishedBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
