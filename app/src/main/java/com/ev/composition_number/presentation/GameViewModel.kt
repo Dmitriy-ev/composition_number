@@ -66,6 +66,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         getGameSettings(level)
         startTimer()
         generateQuestions()
+        updateProgress()
     }
 
     fun chooseAnswer(answer: Int) {
@@ -77,7 +78,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     private fun updateProgress() {
         val percent = calculatePercentRightAnswers()
         _percentRightAnswers.value = percent
-        _progressAnswers.value = String().format(
+        _progressAnswers.value = String.format(
             context.resources.getString(R.string.progress_answers),
             countRightAnswers,
             gameSetting.minCountOfRightAnswers
@@ -87,6 +88,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun calculatePercentRightAnswers(): Int {
+        if(countQuestions == 0) return 0
         return ((countRightAnswers / countQuestions.toDouble()) * 100).toInt()
     }
 
@@ -141,7 +143,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         val seconds = mill / MILLIS_IN_SECONDS
         val minutes = seconds / SECONDS_IN_MINUTES
         val leftSeconds = seconds - (minutes * SECONDS_IN_MINUTES)
-        return String().format("%02d:$02d", minutes, leftSeconds)
+        return String.format("%02d:%02d", minutes, leftSeconds)
     }
 
     companion object {
