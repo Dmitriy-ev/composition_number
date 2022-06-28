@@ -55,7 +55,6 @@ class GameFragment : Fragment() {
         )[GameViewModel::class.java]
         observeViewModel()
         setClickListenerToOption()
-        viewModel.startGame(level)
     }
 
     private fun setClickListenerToOption() {
